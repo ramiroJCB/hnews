@@ -1,0 +1,36 @@
+version: "3"
+services:
+  reign-spa:
+    image: reign-spa
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - reign-app
+  reign-api:
+    image: reign-api
+    ports:
+      - "5000:5000"
+    networks:
+      - reign-app
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    environment:
+      WAIT_HOSTS: mongo:27017
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    ports:
+      - 27017
+    networks:
+      - reign-app
+    volumes:
+      - mongo-data:/data/db
+networks:
+  reign-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local
