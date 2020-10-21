@@ -15,6 +15,14 @@ export const fetchArticles = createAsyncThunk(
   }
 );
 
+export const fetchArticlesNow = createAsyncThunk(
+  `${name}/fetchArticlesNow`,
+  async () => {
+    await Axios.get("http://localhost:5000/getArticlesNow");
+    return;
+  }
+);
+
 export const deleteArticle = createAsyncThunk(
   `${name}/deleteArticle`,
   async (id: string) => {
