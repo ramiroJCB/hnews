@@ -85,7 +85,27 @@ export const Articles: React.FC<props> = ({
           </Rows>
         ))}
       {articles && articles.length === 0 && (
-        <h1 style={{ alignSelf: "center" }}>Sorry There are no News</h1>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <h1 style={{ alignSelf: "center" }}>
+            Sorry There are no News ,but you could get them now with the this
+            Button!
+          </h1>
+          <button
+            style={{ width: "35vw" }}
+            onClick={() => {
+              dispatch(fetchArticlesNow());
+              history.push("/getNow");
+            }}
+          >
+            Get Articles Now
+          </button>
+        </div>
       )}
       {!articles && (
         <div
