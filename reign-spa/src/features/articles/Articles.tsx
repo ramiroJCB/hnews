@@ -2,7 +2,7 @@ import React from "react";
 import { dateFormat } from "../../helpers/dates";
 import { IArticles } from "../../interfaces/articles";
 import { Author, Root, Rows, TitleAndTime, TrashIcon } from "./Articles.styled";
-import { fetchArticlesNow } from "./slice";
+
 import trash from "../../assets/trash.svg";
 import hand from "../../assets/hand.svg";
 import { useHistory } from "react-router-dom";
@@ -87,29 +87,7 @@ export const Articles: React.FC<props> = ({
       {articles && articles.length === 0 && (
         <h1 style={{ alignSelf: "center" }}>Sorry There are no News</h1>
       )}
-      {!articles && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <h1 style={{ alignSelf: "center" }}>
-            Api needs an 1h to get the data or you just need to add the Data
-            with below Button
-          </h1>
-          <button
-            style={{ width: "35vw" }}
-            onClick={() => {
-              dispatch(fetchArticlesNow());
-              history.push("/getNow");
-            }}
-          >
-            Get Articles Now
-          </button>
-        </div>
-      )}
+      {!articles && <h1 style={{ alignSelf: "center" }}>Api Error</h1>}
     </Root>
   );
 };

@@ -1,6 +1,6 @@
 FROM node:14-slim
 ENV NODE_ENV production
-WORKDIR /usr/src/main
+WORKDIR /usr/src/app
 
 
 COPY ./package.json ./

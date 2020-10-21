@@ -8,7 +8,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 @Module({
   imports: [
     ArticlesModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/reign-api', {
+    MongooseModule.forRoot('mongodb://mongo/reign-api', {
       useFindAndModify: false,
       useNewUrlParser: true,
     }),

@@ -30,18 +30,6 @@ export class ArticlesService {
     return articles.filter(article => !article._ignored);
   }
 
-  async getArticlesNow(): Promise<void> {
-    let {
-      data: { hits },
-    } = await this.httpService
-      .get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs')
-      .toPromise();
-
-    await this.articlesModel.insertMany(
-      hits.filter(article => article.story_title || article.story),
-    );
-  }
-
   async deletArticle(articleId: string): Promise<string> {
     await this.articlesModel.findByIdAndUpdate(new ObjectId(articleId), {
       _ignored: true,
